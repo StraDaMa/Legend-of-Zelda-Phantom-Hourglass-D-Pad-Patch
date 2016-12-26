@@ -1,0 +1,15 @@
+;KeyPad Macros
+GBAKEY_A equ (1<<0);0x01
+GBAKEY_B equ (1<<1);0x02
+GBAKEY_SELECT equ (1<<2);0x04
+GBAKEY_START equ (1<<3);0x08
+GBAKEY_RIGHT equ (1<<4);0x10
+GBAKEY_LEFT equ (1<<5);0x20
+GBAKEY_UP equ (1<<6);0x40
+GBAKEY_DOWN equ (1<<7);0x80
+GBAKEY_DIRECTION equ (0xF0)
+GBAKEY_R equ (1<<8);0x100
+GBAKEY_L equ (1<<9);0x200
+DSKEY_X equ (1<<10);0x400
+DSKEY_Y equ (1<<11);0x800
+;eof
