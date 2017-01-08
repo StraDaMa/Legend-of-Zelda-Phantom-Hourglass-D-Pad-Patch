@@ -24,8 +24,8 @@ Compiling these sources requires:
 
 Setting Up Game Files:
 -------------
-Place a copy of Legend of Zelda Phantom Hourglass in the unpack folder and name it "input.nds" and run compile.bat
+Place a copy of Legend of Zelda Phantom Hourglass US/EU in the unpack folder and name it "input.nds" and run compile.bat
 
 Compatibility
 -------------
-This patch has only been tested with the US release of Phantom Hourglass. Support for other regions hasn't been tested so it may or may not work.
+This patch has only been tested with the US and EU release of Phantom Hourglass. Support for other regions hasn't been tested so it may or may not work.

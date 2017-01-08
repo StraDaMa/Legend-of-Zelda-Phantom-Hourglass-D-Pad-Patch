@@ -1,20 +1,21 @@
 .nds
 .relativeinclude on
 .include "macros.asm"
+
 ;edit the ARM9
-;uncompressed size 0x5CF78
-;RAM range 0x02004000-0x02060F77
-.open "arm9_original.bin","arm9_compressed.bin",0x02004000
+;uncompressed sizes: 0x5CF78,0x5CFD8
+;RAM ranges: 0x02004000-0x02060F77, 0x02004000-0x02060FD7
+.ropen "arm9_original.bin","arm9_original.bin","arm9_compressed.bin","arm9_compressed.bin",0x02004000,0x02004000
 	;advance dialog with A/B in addition to tap
-	.org 0x0203A474
+	.rorg 0x0203A474,0x0203A4B8
 	bl dialog_advance_check_keys
 
 	;stops game from clearing the pressed buttons during boss battles
-	.org 0x0202ADEC
-	b 0x0202ADF8
+	.rorg 0x0202ADEC,0x0202AE04
+	rb 0x0202ADF8, 0x0202AE10
 
 	;ARM9 "freespace"
-	.org 0x02058608
+	.rorg 0x02058608,0x02058664
 		.area 0x4B4
 		.include "util.asm"
 		.include "movement/movement_arm9_freespace.asm"
@@ -26,25 +27,26 @@
 .close
 
 ;edit the overlay0000 (contains code for movement with touchscreen)
-;uncompressed size: 0x71F60
-;RAM range 0x02077360-0x020E92C0
-.open "overlay_0000_0000_original.bin","overlay_0000_0000_compressed.bin",0x02077360
+;uncompressed size: 0x71F60,0x71F60
+;RAM range 0x02077360-0x020E92C0, 0x020773C0-0x020E9320
+.ropen "overlay_0000_original.bin","overlay_0000_original.bin","overlay_0000_compressed.bin","overlay_0000_compressed.bin",0x02077360,0x020773C0
 	.include "interact/interact_overlay0000.asm"
 	.include "attack/attack_overlay0000.asm"
 	.include "movement/movement_overlay0000.asm"
 .close
 
-;edit the overlay0021 (contains checks for key inputs for quick menus)
+;edit the overlay0021/20 (contains checks for key inputs for quick menus)
+;EU uses overlay20 for this but it was extracted as "overlay_0021_original.bin" to work around an armips bug
 ;uncompressed size: 0xC900
 ;RAM range 0x02112BA0-0x0211F4A0
-.open "overlay_0021_0009_original.bin","overlay_0021_0009_compressed.bin",0x02112BA0
+.ropen "overlay_0021_original.bin","overlay_0021_original.bin","overlay_0021_compressed.bin","overlay_0020_compressed.bin",0x02112BA0,0x02112C20
 	.include "movement/movement_overlay0021.asm"
 .close
 
 ;edit the overlay0029 (contains checks for key inputs for quick menus)
-;uncompressed size: 0x3B560
+;uncompressed size: 0x3B560,0x3B580
 ;RAM range 0x0211F5C0-0x0215AB20
-.open "overlay_0029_0014_original.bin","overlay_0029_0014_compressed.bin",0x0211F5C0
+.ropen "overlay_0029_original.bin","overlay_0029_original.bin","overlay_0029_compressed.bin","overlay_0029_compressed.bin",0x0211F5C0,0x0211F640
 	.include "movement/movement_overlay0029.asm"
 .close
 ;eof

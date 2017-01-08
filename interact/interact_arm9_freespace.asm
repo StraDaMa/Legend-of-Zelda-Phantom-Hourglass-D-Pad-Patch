@@ -12,12 +12,12 @@ mov r0,r5
 add r1,r13,0x54
 add r2,r13,0x04
 add r3,r13,0x00
-bl 0x1FFE468
+rbl 0x1FFE468,0x1FFE468
 ldrh r7,[r13,0x00]
 ldrh r8,[r13,0x04]
 ldr r0,=0x027E0F64
 ldr r0,[r0]
-bl 0x0208B120
+rbl 0x0208B120,0x0208B180
 add r0,r0,0x200
 ldrsh r0,[r0,0x26]
 ldrh r1,[r4,0x6A]
@@ -39,7 +39,7 @@ bgt @@add_done
 sublt r0,r0,0x1E
 @@add_done:
 add r7,r7,r0
-ldr r6,=0x027E0D84
+rldr r6,0x027E0D84,0x027E0D84
 mov r1,0x01
 str r1,[r6,0x00]
 str r8,[r6,0x04]
@@ -49,7 +49,7 @@ str r8,[r4,0x10]
 str r7,[r4,0x14]
 mov r0,r4
 mov r1,0x02
-bl 0x0207AC18
+rbl 0x0207AC18,0x0207AC78
 @@endroutine:
 add r13,r13,0x10
 ldmfd r13!,r2-r6,r15
