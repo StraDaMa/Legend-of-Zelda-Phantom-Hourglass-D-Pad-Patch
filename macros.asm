@@ -18,7 +18,7 @@ DSKEY_X equ 1<<10;0x400
 DSKEY_Y equ 1<<11;0x800
 
 ;Sets the output pointer depending on the game region
-.macro .rorg,us_offset,eu_offset
+.macro .rorg, us_offset, eu_offset
 	.if current_region == REGION_US
 		.org us_offset
 	.elseif current_region == REGION_EU
@@ -27,16 +27,16 @@ DSKEY_Y equ 1<<11;0x800
 .endmacro
 
 ;Open depending on the game region
-.macro .ropen,us_original_file,eu_original_file,us_output_file,eu_output_file,us_offset,eu_offset
+.macro .ropen, us_original_file, eu_original_file, us_output_file, eu_output_file, us_offset, eu_offset
 	.if current_region == REGION_US
-		.open us_original_file,us_output_file,us_offset
+		.open us_original_file, us_output_file, us_offset
 	.elseif current_region == REGION_EU
-		.open eu_original_file,eu_output_file,eu_offset
+		.open eu_original_file, eu_output_file, eu_offset
 	.endif
 .endmacro
 
 ;Branches depending on game region
-.macro rbl,us_offset,eu_offset
+.macro rbl, us_offset, eu_offset
 	.if current_region == REGION_US
 		bl us_offset
 	.elseif current_region == REGION_EU
@@ -45,7 +45,7 @@ DSKEY_Y equ 1<<11;0x800
 .endmacro
 
 ;Branches depending on game region
-.macro rb,us_offset,eu_offset
+.macro rb, us_offset, eu_offset
 	.if current_region == REGION_US
 		b us_offset
 	.elseif current_region == REGION_EU
@@ -54,7 +54,7 @@ DSKEY_Y equ 1<<11;0x800
 .endmacro
 
 ;Branches depending on game region
-.macro rbne,us_offset,eu_offset
+.macro rbne, us_offset, eu_offset
 	.if current_region == REGION_US
 		bne us_offset
 	.elseif current_region == REGION_EU
@@ -63,7 +63,7 @@ DSKEY_Y equ 1<<11;0x800
 .endmacro
 
 ;Branches depending on game region
-.macro rbeq,us_offset,eu_offset
+.macro rbeq, us_offset, eu_offset
 	.if current_region == REGION_US
 		beq us_offset
 	.elseif current_region == REGION_EU
@@ -72,20 +72,20 @@ DSKEY_Y equ 1<<11;0x800
 .endmacro
 
 ;loads value to register depending on game region
-.macro rldr,reg,us_offset,eu_offset
+.macro rldr, reg, us_offset, eu_offset
 	.if current_region == REGION_US
-		ldr reg,=us_offset
+		ldr reg, =us_offset
 	.elseif current_region == REGION_EU
-		ldr reg,=eu_offset
+		ldr reg, =eu_offset
 	.endif
 .endmacro
 
 ;loads value to register depending on game region
-.macro rldrne,reg,us_offset,eu_offset
+.macro rldrne, reg, us_offset, eu_offset
 	.if current_region == REGION_US
-		ldrne reg,=us_offset
+		ldrne reg, =us_offset
 	.elseif current_region == REGION_EU
-		ldrne reg,=eu_offset
+		ldrne reg, =eu_offset
 	.endif
 .endmacro
 
